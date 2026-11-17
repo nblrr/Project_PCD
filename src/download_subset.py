@@ -25,6 +25,7 @@ def prepare_local_subset(
     dataset_path = Path(dataset_dir)
     images_zip = dataset_path / "BBBC005_v1_images.zip"
     csv_path = dataset_path / "BBBC005_results_bray.csv"
+    gt_zip = dataset_path / "BBBC005_v1_ground_truth.zip"
     gt_dir = dataset_path / "BBBC005_v1_ground_truth" / "BBBC005_v1_ground_truth"
 
     out_images = Path(output_dir) / "images"
@@ -48,22 +49,26 @@ def prepare_local_subset(
     else:
         print(f"[PERINGATAN] File {images_zip} tidak ditemukan. Gunakan download selektif.")
 
-    # 3. Salin mask F1 untuk evaluasi segmentasi spasial
+    # 3. Ekstrak mask F1 untuk evaluasi segmentasi spasial
     subset_f1 = subset_df[subset_df["Image_Metadata_BlurFilterSize"] == 1]
     mask_filenames = subset_f1["Image_FileName_Nuclei"].tolist()
     print(f"Menyiapkan {len(mask_filenames)} mask ground-truth F1...")
 
     copied_masks = 0
-    if gt_dir.exists():
+    if gt_zip.exists():
+        print(f"Mengekstrak {len(mask_filenames)} mask dari {gt_zip.name}...")
+        copied_masks = extract_subset_from_zip(gt_zip, mask_filenames, out_masks)
+        print(f"Berhasil mengekstrak {copied_masks} mask ke {out_masks}.")
+    elif gt_dir.exists():
         for fname in mask_filenames:
             src_mask = gt_dir / fname
             if src_mask.exists():
                 dst_mask = out_masks / fname
                 dst_mask.write_bytes(src_mask.read_bytes())
                 copied_masks += 1
-        print(f"Berhasil menyiapkan {copied_masks} mask ke {out_masks}.")
+        print(f"Berhasil menyiapkan {copied_masks} mask dari folder ke {out_masks}.")
     else:
-        print(f"[PERINGATAN] Folder mask ground truth tidak ditemukan di {gt_dir}.")
+        print(f"[PERINGATAN] File {gt_zip} atau folder {gt_dir} tidak ditemukan.")
 
     print("== Persiapan data selesai! ==")
 

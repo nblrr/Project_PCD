@@ -50,7 +50,7 @@ def gaussian_smoothing(
 def preprocess_pipeline(
     img: np.ndarray,
     sigma: float = 1.0,
-    apply_stretching: bool = True,
+    apply_stretching: bool = False,
 ) -> np.ndarray:
     """Pipeline terpadu preprocessing citra input."""
     processed = img.copy()

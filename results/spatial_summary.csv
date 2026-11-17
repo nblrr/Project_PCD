@@ -1,0 +1,5 @@
+method,mean_iou,mean_dice
+Baseline (Otsu),0.9661,0.9827
+M1 (Local Maxima),0.94,0.9686
+M2 (h-Maxima),0.9661,0.9827
+M3 (Erosion),0.9661,0.9827

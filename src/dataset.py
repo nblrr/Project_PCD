@@ -17,12 +17,13 @@ import numpy as np
 import pandas as pd
 
 # Konfigurasi Strata Eksperimen Terverifikasi (Dokumen Perencanaan Hal. 9-10)
+# Catatan: Pada dataset BBBC005 aktual nilai diskrit C terdekat adalah C=5 (bukan 6) dan C=53 (bukan 52)
 STRATA_C = {
-    "rendah": [1, 6],
-    "sedang": [27, 52],
+    "rendah": [1, 5],
+    "sedang": [27, 53],
     "tinggi": [74, 100],
 }
-SELECTED_C = [1, 6, 27, 52, 74, 100]
+SELECTED_C = [1, 5, 27, 53, 74, 100]
 SELECTED_F = [1, 7, 17, 32]
 SAMPLES_PER_STRATA = 6  # s01 s.d. s06
 

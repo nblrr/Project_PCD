@@ -12,7 +12,7 @@ import numpy as np
 import scipy.ndimage as ndi
 from skimage.filters import threshold_otsu
 from skimage.measure import label
-from skimage.morphology import disk, binary_opening, binary_closing
+from skimage.morphology import disk, opening, closing
 
 
 def otsu_thresholding(img: np.ndarray) -> Tuple[np.ndarray, float]:
@@ -43,7 +43,7 @@ def morphological_cleanup(
     3. Area filtering membuang komponen terlalu kecil.
     """
     selem = disk(opening_radius)
-    cleaned = binary_opening(binary_mask, selem)
+    cleaned = opening(binary_mask, selem)
     cleaned = ndi.binary_fill_holes(cleaned).astype(np.uint8)
 
     # Area filtering menggunakan connected components
