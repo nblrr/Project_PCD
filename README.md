@@ -18,9 +18,6 @@ Proyek ini menginvestigasi perbandingan matematis **3 strategi pembentukan marke
 
 Evaluasi diuji secara komprehensif terhadap variasi kepadatan sel ($C = 1 \dots 100$) dan tingkat defokus optik ($F = 1, 7, 17, 32$).
 
-> ⚠️ **Batasan Mutlak Akademik:**  
-> Proyek ini **sepenuhnya menggunakan Pengolahan Citra Digital klasik berbasis matematika deterministik** (tanpa Deep Learning / CNN / YOLO).
-
 ---
 
 ## 2. Pembagian Peran & Tanggung Jawab Tim (4 Orang)
@@ -48,9 +45,6 @@ Dataset yang digunakan berasal dari **Broad Bioimage Benchmark Collection (BBBC0
   * **Level Blur Fokus:** $F \in \{1, 7, 17, 32\}$.
   * **Sampel:** 6 replika sampel per strata ($s01 \dots s06$).
 * **Subset Mask Ground-Truth:** 36 citra pada kondisi fokus tajam ($F_1$) untuk evaluasi spasial IoU dan Dice.
-
-> 🚫 **PERINGATAN GIT:**  
-> Jangan pernah meng-upload file arsip mentah `BBBC005_v1_images.zip` (1,88 GB) ke GitHub! Selalu gunakan skrip ekstraksi selektif lokal atau link cloud kelompok.
 
 ---
 
